@@ -8,27 +8,48 @@ const Add = () => {
       price: parseInt(e.target.price.value),
       image: e.target.image.value,
     };
+    
+    // console.log(product);
 
     fetch("http://localhost:5000/product", {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
-      body: JSON.stringify(product)
-    }).then(res => res.json())
-    .then(data => {
-      if(data.success){
-        toast.success(data.message);
-      } else {
-        toast.error(data.error);
-      }
+      body: JSON.stringify(product),
     })
-    .catch(err => {
-      toast.error(err.message);
-    })
-    
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(data.message);
+          
+        } else {
+          toast.error(data.error);
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+
+    // fetch("http://localhost:5000/product", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json"
+    //   },
+    //   body: JSON.stringify(product)
+    // }).then(res => res.json())
+    // .then(data => {
+    //   if(data.success){
+    //     toast.success(data.message);
+    //   } else {
+    //     toast.error(data.error);
+    //   }
+    // })
+    // .catch(err => {
+    //   toast.error(err.message);
+    // })
   };
-  
+
   return (
     <div className="py-32 px-10 min-h-screen w-full">
       <div className="bg-white p-10 md:w-3/4 lg:w-1/2 mx-auto">
@@ -70,7 +91,9 @@ const Add = () => {
           </div>
 
           <div className="text-right">
-            <button className="py-3 px-8 bg-green-400 text-white font-bold">Add</button>
+            <button className="py-3 px-8 bg-green-400 text-white font-bold">
+              Add
+            </button>
           </div>
         </form>
       </div>

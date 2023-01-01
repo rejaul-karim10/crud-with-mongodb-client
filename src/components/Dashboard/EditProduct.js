@@ -30,6 +30,8 @@ const EditProduct = () => {
       image: e.target.image.value
     }
 
+    console.log(product)
+
     fetch(`http://localhost:5000/product/${id}`, {
       method: "PATCH",
       headers: {
